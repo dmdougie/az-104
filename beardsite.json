@@ -300,8 +300,8 @@
         {
             "type": "Microsoft.Compute/virtualMachines",
             "apiVersion": "2019-03-01",
-            "name": "servername",
-            "location": "location",
+            "name": "[variable('servername')]",
+            "location": "[resourceGroup().location]",
             "dependsOn": [
                 "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_backendserver2859_name'))]"
             ],
@@ -321,7 +321,7 @@
                     },
                     "osDisk": {
                         "osType": "Linux",
-                        "name": "[concat(parameters('virtualMachines_frontendSERVER_name'), '_OsDisk_1_c6d33243208549028193e578673837b9')]",
+                        "name": "[concat(variables('servername'), '_OsDisk_1_c6d33243208549028193e578673837b9')]",
                         "createOption": "FromImage",
                         "caching": "ReadWrite",
                         "managedDisk": {
@@ -332,7 +332,7 @@
                     "dataDisks": []
                 },
                 "osProfile": {
-                    "computerName": "[parameters('virtualMachines_backendSERVER2_name')]",
+                    "computerName": "[variables('servername')]",
                     "adminUsername": "beardmin",
                     "adminPassword": "mM%Vc!562yTj",
                     "linuxConfiguration": {
